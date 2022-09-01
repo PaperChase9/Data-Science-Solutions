@@ -1,0 +1,60 @@
+Chase Buelow
+> library(readxl)
+> shots_data <- read_excel("shots_data.xlsx")
+> View(shots_data)
+> addmargins(table(shots_data$team, shots_data$fgmade))
+        
+           0   1 Sum
+  Team A 155 125 280
+  Team B 132  92 224
+  Sum    287 217 504
+> two_point <- subset(shots_data, x <= 22 & x >= -22)
+> addmargins(table(two_point$team, two_point$fgmade))
+        
+           0   1 Sum
+  Team A 146 115 261
+  Team B 122  86 208
+  Sum    268 201 469
+> ncthree_point <- subset(shots_data, x > 23.75 & y > 7.8 | x < -23.75 & y < -7.8)
+> head(ncthree_point)
+# A tibble: 0 × 4
+# … with 4 variables: team <chr>, x <dbl>, y <dbl>,
+#   fgmade <dbl>
+# ℹ Use `colnames()` to see all variable names
+> cthree_point <- subset(shots_data, x > 22 & y <= 7.8 | x < -22  & y >= -7.8)
+> addmargins(table(cthree_point$team, cthree_point$fgmade))
+        
+          0  1 Sum
+  Team A  9  9  18
+  Team B  8  5  13
+  Sum    17 14  31
+> (125 +(0.5 *9))/280
+[1] 0.4625
+> 280/504
+[1] 0.5555556
+> (92 +(0.5 *5))/224
+[1] 0.421875
+> (115 +(0.5 *9))/261
+[1] 0.4578544
+> (86 +(0.5 *5))/208
+[1] 0.4254808
+> (9 +(0.5 *9))/18
+[1] 0.75
+> (5 +(0.5 *5))/13
+[1] 0.5769231
+> 3/224
+[1] 0.01339286
+> 13/224
+[1] 0.05803571
+> 208/224
+[1] 0.9285714
+> 1/280
+[1] 0.003571429
+> 18/280
+[1] 0.06428571
+> 261/280
+[1] 0.9321429
+> (280-261)-18
+[1] 1
+> (224-208)-13
+[1] 3
